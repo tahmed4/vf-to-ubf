@@ -97,4 +97,4 @@ async function voiceflowToBotFormat(diagram){
     return botFormat
 }
 
-export default {voiceflowToBotFormat}
+module.exports = {voiceflowToBotFormat}

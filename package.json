@@ -1,0 +1,25 @@
+{
+  "name": "vf-to-ubf",
+  "version": "1.0.0",
+  "description": "Convert Voiceflow (.vf) diagram into a universal format!",
+  "main": "voiceflowToBotFormat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tahmed4/vf-to-ubf.git"
+  },
+  "keywords": [
+    "voiceflow",
+    "format",
+    "json",
+    "diagram"
+  ],
+  "author": "SMS-IT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tahmed4/vf-to-ubf/issues"
+  },
+  "homepage": "https://github.com/tahmed4/vf-to-ubf#readme"
+}
