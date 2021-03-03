@@ -10,13 +10,15 @@ Then...
 
 
 ```
-import {voiceflowToBotFormat} from 'vf-to-ubf';
+import {voiceflowToBotFormat, voiceflowToBot} from 'vf-to-ubf';
 
 universal_format = voiceflowToBotFormat(diagram)
 
+bot_definition = voiceflowToBot(diagram)
+
 ```
 
-Where `diagram` is your Voiceflow file.
+Where `diagram` is your Voiceflow file in JSON format.
 
 # Format Example
 
