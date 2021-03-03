@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/tahmed4/vf-to-ubf/issues"
   },
-  "homepage": "https://github.com/tahmed4/vf-to-ubf#readme"
+  "homepage": "https://github.com/tahmed4/vf-to-ubf#readme",
+  "dependencies": {
+    "jsonschema": "^1.4.0"
+  }
 }
