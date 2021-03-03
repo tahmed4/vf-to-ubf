@@ -1,3 +1,6 @@
+const validate = require("./lib/validate.js")
+const Bot = require("./lib/Bot.js")
+
 /**
  * Returns all the nodes found under the root diagram id.
  * 
@@ -70,9 +73,21 @@ async function nextSpeakNode(node, allNodes){
  * Goes through each node from voiceflow diagram
  * and converts it to the unified bot format.
  * 
- * @param {Object} diagram - Voiceflow diagram.
+ * @param {Object} - Voiceflow diagram. `null` on error
  */
 async function voiceflowToBotFormat(diagram){
+    try{
+      if ((await validate.validateDiagram(diagram)) === false){
+          return null
+      } 
+
+      if ((await validate.validateDiagramWithSchema(diagram)) === false){
+          return null
+      }
+    } catch (e){
+      return null
+    }
+
     var botFormat = {"project": {"nodes": {}}}
     botFormat["project"]["name"] = diagram["project"]["name"] 
     
@@ -97,4 +112,28 @@ async function voiceflowToBotFormat(diagram){
     return botFormat
 }
 
-module.exports = {voiceflowToBotFormat}
+/**
+ * Takes a Voiceflow diagram and returns it in a
+ * Bot definition.
+ * 
+ * @param {Object}  - Initialised bot without number or id.
+ */
+async function voiceflowToBot(diagram){
+    var bot = new Bot()
+    var botDiagram = await voiceflowToBotFormat(diagram)
+
+    if(botDiagram == null){
+        return null
+    }
+
+    bot.name = botDiagram["project"]["name"]
+    bot.timestamp = new Date().getTime()
+    bot.diagram = botDiagram
+
+    console.log(bot)
+
+    return bot
+}
+
+
+module.exports = {voiceflowToBotFormat, voiceflowToBot}
