@@ -10,11 +10,12 @@ Then...
 
 
 ```
-import {voiceflowToBotFormat, voiceflowToBot} from 'vf-to-ubf';
+import {voiceflowToBotFormat} from 'vf-to-ubf';
+var fs = require('fs');
+
+diagram = fs.readFile("./VoiceflowFile.vf")
 
 universal_format = voiceflowToBotFormat(diagram)
-
-bot_definition = voiceflowToBot(diagram)
 
 ```
 
@@ -25,6 +26,8 @@ Where `diagram` is your Voiceflow file in JSON format.
 A converted diagram would look something like this.
 
 ```
+console.log(universal_format) 
+->
 {
    "project":{
       "name":"A Fantastic Project",
