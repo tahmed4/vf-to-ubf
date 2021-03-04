@@ -112,28 +112,5 @@ async function voiceflowToBotFormat(diagram){
     return botFormat
 }
 
-/**
- * Takes a Voiceflow diagram and returns it in a
- * Bot definition.
- * 
- * @param {Object}  - Initialised bot without number or id.
- */
-async function voiceflowToBot(diagram){
-    var bot = new Bot()
-    var botDiagram = await voiceflowToBotFormat(diagram)
 
-    if(botDiagram == null){
-        return null
-    }
-
-    bot.name = botDiagram["project"]["name"]
-    bot.timestamp = new Date().getTime()
-    bot.diagram = botDiagram
-
-    console.log(bot)
-
-    return bot
-}
-
-
-module.exports = {voiceflowToBotFormat, voiceflowToBot}
+module.exports = {voiceflowToBotFormat}
