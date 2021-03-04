@@ -1,5 +1,4 @@
 const validate = require("./lib/validate.js")
-const Bot = require("./lib/Bot.js")
 
 /**
  * Returns all the nodes found under the root diagram id.
