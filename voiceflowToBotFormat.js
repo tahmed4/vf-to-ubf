@@ -3,9 +3,9 @@ const validate = require("./lib/validate.js")
 /**
  * Returns all the nodes found under the root diagram id.
  * 
- * @param {Object} diagram 
+ * @param {Object} diagram - The Voiceflow (.vf) diagram
  * 
- * @returns {Object} - all nodes.
+ * @returns {Object} - All nodes found in root diagram.
  */
 function readNodes(diagram){
     let root_diagram = diagram["version"]["rootDiagramID"]
