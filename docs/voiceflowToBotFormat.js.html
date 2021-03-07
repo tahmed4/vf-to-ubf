@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: voiceflowToBotFormat.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: voiceflowToBotFormat.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const validate = require("./lib/validate.js")
+
+/**
+ * Returns all the nodes found under the root diagram id.
+ * 
+ * @param {Object} diagram 
+ * 
+ * @returns {Object} - all nodes.
+ */
+function readNodes(diagram){
+    let root_diagram = diagram["version"]["rootDiagramID"]
+    return diagram["diagrams"][root_diagram]["nodes"]
+}
+
+/**
+ * Takes a node and looks for the next connected
+ * speak node from it.
+ * 
+ * @param {string} node - Current node being checked.
+ * @param {Object} allNodes - All root diagram nodes.
+ */
+async function nextSpeakNode(node, allNodes){
+    var nodeInfo = allNodes[node]
+
+    if(nodeInfo["type"] === "start"){
+        return nodeInfo["data"]["ports"][0]["target"]
+    }
+
+    if(nodeInfo["type"] === "speak"){
+        var nextNode = nodeInfo["data"]["ports"][0]["target"]
+
+        if(nextNode === null){
+            return null
+        }
+
+        var nextNodeInfo = allNodes[nextNode]
+
+        if(nextNodeInfo["type"] === "speak" || nextNodeInfo["type"] === "interaction"){
+            return nextNode
+        } else if(nextNodeInfo["type"] === "block"){
+            return nextNodeInfo["data"]["steps"][0]
+        }
+    }
+    
+    if(nodeInfo["type"] === "interaction"){
+        var yesPath = nodeInfo["data"]["ports"][1]["target"]
+        var yesPathInfo = allNodes[yesPath]
+
+        var output = []
+        
+        if(yesPathInfo["type"] === "speak"){
+            output.unshift(yesPath)
+        } else {
+            output.unshift(yesPathInfo["data"]["steps"][0])
+        }
+
+        var noPath =  nodeInfo["data"]["ports"][2]["target"]
+        var noPathInfo = allNodes[noPath]
+        
+        if(noPathInfo["type"] === "speak"){
+            output.push(noPath)
+        } else {
+            output.push(noPathInfo["data"]["steps"][0])
+        }
+            
+        return output
+    }
+
+}
+
+/**
+ * Goes through each node from voiceflow diagram
+ * and converts it to the unified bot format.
+ * 
+ * @param {Object} - Voiceflow diagram. `null` on error
+ */
+async function voiceflowToBotFormat(diagram){
+    try{
+      if ((await validate.validateDiagram(diagram)) === false){
+          return null
+      } 
+
+      if ((await validate.validateDiagramWithSchema(diagram)) === false){
+          return null
+      }
+    } catch (e){
+      return null
+    }
+
+    var botFormat = {"project": {"nodes": {}}}
+    botFormat["project"]["name"] = diagram["project"]["name"] 
+    
+    var nodes = await readNodes(diagram)
+
+    for(var node in nodes){
+        var nodeInfo = nodes[node]
+        var type = nodeInfo["type"]
+        
+        if(type === "speak" || type === "start" || type === "interaction"){
+            var nextSpeakNodeVal = await nextSpeakNode(node, nodes)
+        }
+        if(type === "speak"){
+            botFormat["project"]["nodes"][node] = {"type": type, "content": nodeInfo["data"]["dialogs"][0]["content"] , "next": nextSpeakNodeVal}
+        } else if (type === "start"){
+            botFormat["project"]["nodes"][node] = {"type": type, "next": nextSpeakNodeVal}
+        } else if (type === "interaction"){
+            botFormat["project"]["nodes"][node] = {"type": type, "options":[{"type": "yes", "next":nextSpeakNodeVal[0]}, {"type": "no", "next":nextSpeakNodeVal[1]}]}
+        }
+    }
+
+    return botFormat
+}
+
+
+module.exports = {voiceflowToBotFormat}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getBlockSchema">getBlockSchema</a></li><li><a href="global.html#getChoiceSchema">getChoiceSchema</a></li><li><a href="global.html#getCommandSchema">getCommandSchema</a></li><li><a href="global.html#getSpeakSchema">getSpeakSchema</a></li><li><a href="global.html#getStartSchema">getStartSchema</a></li><li><a href="global.html#getVFSchema">getVFSchema</a></li><li><a href="global.html#nextSpeakNode">nextSpeakNode</a></li><li><a href="global.html#readNodes">readNodes</a></li><li><a href="global.html#validateDiagram">validateDiagram</a></li><li><a href="global.html#validateDiagramWithSchema">validateDiagramWithSchema</a></li><li><a href="global.html#voiceflowToBotFormat">voiceflowToBotFormat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 10:48:34 GMT+0000 (Greenwich Mean Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
