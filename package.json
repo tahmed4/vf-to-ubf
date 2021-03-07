@@ -4,7 +4,8 @@
   "description": "Convert Voiceflow (.vf) diagram into a universal format!",
   "main": "voiceflowToBotFormat.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"doc": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
