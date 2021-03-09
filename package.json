@@ -4,8 +4,8 @@
   "description": "Convert Voiceflow (.vf) diagram into a universal format!",
   "main": "voiceflowToBotFormat.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"doc": "jsdoc -c jsdoc.json"
+    "test": "jest --coverage",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
   "homepage": "https://github.com/tahmed4/vf-to-ubf#readme",
   "dependencies": {
     "jsonschema": "^1.4.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }
