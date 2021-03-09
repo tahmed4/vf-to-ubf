@@ -107,9 +107,7 @@ async function voiceflowToBotFormat(diagram){
             botFormat["project"]["nodes"][node] = {"type": type, "options":[{"type": "yes", "next":nextSpeakNodeVal[0]}, {"type": "no", "next":nextSpeakNodeVal[1]}]}
         }
     }
-
     return botFormat
 }
 
-
-module.exports = {voiceflowToBotFormat}
+module.exports = voiceflowToBotFormat
