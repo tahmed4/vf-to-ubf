@@ -1,11 +1,11 @@
 {
   "name": "vf-to-ubf",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Convert Voiceflow (.vf) diagram into a universal format!",
   "main": "voiceflowToBotFormat.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
