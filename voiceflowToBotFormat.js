@@ -92,6 +92,10 @@ async function voiceflowToBotFormat(diagram){
     
     var nodes = await readNodes(diagram)
 
+    if(Object.keys(nodes).length <= 2){
+        return null
+    }
+
     for(var node in nodes){
         var nodeInfo = nodes[node]
         var type = nodeInfo["type"]
