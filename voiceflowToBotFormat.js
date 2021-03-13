@@ -92,6 +92,10 @@ async function voiceflowToBotFormat(diagram){
     
     var nodes = await readNodes(diagram)
 
+    if(Object.keys(nodes).length <= 2){
+        return null
+    }
+
     for(var node in nodes){
         var nodeInfo = nodes[node]
         var type = nodeInfo["type"]
@@ -107,9 +111,7 @@ async function voiceflowToBotFormat(diagram){
             botFormat["project"]["nodes"][node] = {"type": type, "options":[{"type": "yes", "next":nextSpeakNodeVal[0]}, {"type": "no", "next":nextSpeakNodeVal[1]}]}
         }
     }
-
     return botFormat
 }
 
-
-module.exports = {voiceflowToBotFormat}
+module.exports = voiceflowToBotFormat
