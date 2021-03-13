@@ -38,9 +38,7 @@ console.log(universal_format)
          },
          "92eb5ffee6ae2fec3ad71c777531578f":{
             "type":"speak",
-            "content":[
-               "Do I like this package?"
-            ],
+            "content": "Do I like this package?",
             "next":"8277e0910d750195b448797616e091ad"
          },
          "8277e0910d750195b448797616e091ad":{
