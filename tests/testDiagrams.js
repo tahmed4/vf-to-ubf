@@ -7364,4 +7364,235 @@ function getInvalidStart(){
       }`
 }
 
-module.exports = {getValidDiagram, getValidDiagramUBF, getMissingRootNode, getMissingRootNodes, getUnsupportedType, getMoreThanTwoChoices, getLessThanTwoChoices, getMissingPorts, getValidDiagramExtraNodes, getValidDiagramExtraNodesUBF, getInvalidSpeak, getInvalidChoice, getInvalidStart}
+function validRootDiagram(){
+  return `{
+    "5f9f562f11b31520c2a2a6de": {
+      "coords": [
+        226.25,
+        106.25
+      ],
+      "data": {
+        "color": "standard",
+        "name": "Start",
+        "ports": [
+          {
+            "id": "5fde6fac5bc1c56319fad39b",
+            "target": "6047b8ab9bdc55674868041e",
+            "type": ""
+          }
+        ],
+        "steps": [
+          "5f9f562f11b31520c2a2a6df",
+          "5f9f562f11b31520c2a2a6e0",
+          "5fde6fb05bc1c56319fad3a0"
+        ]
+      },
+      "nodeID": "5f9f562f11b31520c2a2a6de",
+      "type": "start"
+    },
+    "5f9f562f11b31520c2a2a6df": {
+      "data": {
+        "diagramID": "6047b787d03e580009e467e6",
+        "intent": "AMAZON.HelpIntent",
+        "mappings": [],
+        "name": "Help",
+        "next": null,
+        "ports": []
+      },
+      "nodeID": "5f9f562f11b31520c2a2a6df",
+      "type": "command"
+    },
+    "5f9f562f11b31520c2a2a6e0": {
+      "data": {
+        "diagramID": "6047b787d03e580009e467e5",
+        "intent": "AMAZON.StopIntent",
+        "mappings": [],
+        "name": "Stop",
+        "next": null,
+        "ports": []
+      },
+      "nodeID": "5f9f562f11b31520c2a2a6e0",
+      "type": "command"
+    },
+    "5fde6fb05bc1c56319fad3a0": {
+      "data": {
+        "diagramID": "6047b787d03e580009e467e5",
+        "intent": "AMAZON.CancelIntent",
+        "mappings": [],
+        "name": "Cancel",
+        "next": null,
+        "ports": []
+      },
+      "nodeID": "5fde6fb05bc1c56319fad3a0",
+      "type": "command"
+    },
+    "6047b78c9bdc556748680285": {
+      "data": {
+        "chips": null,
+        "choices": [
+          {
+            "intent": "AMAZON.YesIntent",
+            "mappings": []
+          },
+          {
+            "intent": "AMAZON.NoIntent",
+            "mappings": []
+          }
+        ],
+        "else": {
+          "randomize": false,
+          "reprompts": [
+            {
+              "content": "",
+              "voice": "Alexa"
+            }
+          ],
+          "type": "reprompt"
+        },
+        "name": "Choice",
+        "ports": [
+          {
+            "id": "6047b78c9bdc556748680287",
+            "target": null,
+            "type": ""
+          },
+          {
+            "id": "6047b78c9bdc556748680288",
+            "target": "6047b7ac9bdc556748680293",
+            "type": ""
+          },
+          {
+            "id": "6047b7939bdc556748680290",
+            "target": "6047b7ae9bdc55674868029d",
+            "type": 2
+          }
+        ],
+        "reprompt": null
+      },
+      "nodeID": "6047b78c9bdc556748680285",
+      "type": "interaction"
+    },
+    "6047b78c9bdc556748680289": {
+      "coords": [
+        1027.25,
+        191.49999999999997
+      ],
+      "data": {
+        "color": "standard",
+        "name": "Block",
+        "steps": [
+          "6047b78c9bdc556748680285"
+        ]
+      },
+      "nodeID": "6047b78c9bdc556748680289",
+      "type": "block"
+    },
+    "6047b7ac9bdc556748680293": {
+      "data": {
+        "dialogs": [
+          {
+            "content": "Yes",
+            "voice": "Alexa"
+          }
+        ],
+        "ports": [
+          {
+            "id": "6047b7ac9bdc556748680295",
+            "target": null,
+            "type": ""
+          }
+        ],
+        "randomize": false
+      },
+      "nodeID": "6047b7ac9bdc556748680293",
+      "type": "speak"
+    },
+    "6047b7ac9bdc556748680296": {
+      "coords": [
+        1603.4999999999998,
+        118.99999999999997
+      ],
+      "data": {
+        "color": "standard",
+        "name": "Block",
+        "steps": [
+          "6047b7ac9bdc556748680293"
+        ]
+      },
+      "nodeID": "6047b7ac9bdc556748680296",
+      "type": "block"
+    },
+    "6047b7ae9bdc55674868029d": {
+      "data": {
+        "dialogs": [
+          {
+            "content": "No",
+            "voice": "Alexa"
+          }
+        ],
+        "ports": [
+          {
+            "id": "6047b7ae9bdc55674868029f",
+            "target": null,
+            "type": ""
+          }
+        ],
+        "randomize": false
+      },
+      "nodeID": "6047b7ae9bdc55674868029d",
+      "type": "speak"
+    },
+    "6047b7ae9bdc5567486802a0": {
+      "coords": [
+        1629.7499999999998,
+        370.24999999999994
+      ],
+      "data": {
+        "color": "standard",
+        "name": "Block",
+        "steps": [
+          "6047b7ae9bdc55674868029d"
+        ]
+      },
+      "nodeID": "6047b7ae9bdc5567486802a0",
+      "type": "block"
+    },
+    "6047b8ab9bdc55674868041b": {
+      "data": {
+        "dialogs": [
+          {
+            "content": "Hello",
+            "voice": "Alexa"
+          }
+        ],
+        "ports": [
+          {
+            "id": "6047b8ab9bdc55674868041d",
+            "target": "6047b78c9bdc556748680285",
+            "type": ""
+          }
+        ],
+        "randomize": false
+      },
+      "nodeID": "6047b8ab9bdc55674868041b",
+      "type": "speak"
+    },
+    "6047b8ab9bdc55674868041e": {
+      "coords": [
+        625.9999999999999,
+        220.49999999999994
+      ],
+      "data": {
+        "color": "standard",
+        "name": "Block",
+        "steps": [
+          "6047b8ab9bdc55674868041b"
+        ]
+      },
+      "nodeID": "6047b8ab9bdc55674868041e",
+      "type": "block"
+    }
+  }`
+}
+
+module.exports = {getValidDiagram, getValidDiagramUBF, getMissingRootNode, getMissingRootNodes, getUnsupportedType, getMoreThanTwoChoices, getLessThanTwoChoices, getMissingPorts, getValidDiagramExtraNodes, getValidDiagramExtraNodesUBF, getInvalidSpeak, getInvalidChoice, getInvalidStart, validRootDiagram}
