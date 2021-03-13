@@ -1,5 +1,5 @@
-const convert = require("../voiceflowToBotFormat")
-const largeDiagrams = require("./testDiagrams")
+const convert = require("../../voiceflowToBotFormat")
+const largeDiagrams = require("../testDiagrams")
 
 test("Empty String as Input", () => {
     convert("").then(resp => {

@@ -1,5 +1,6 @@
-const validate = require("../lib/validate")
-const largeDiagrams = require("./testDiagrams")
+const validate = require("../../lib/validate")
+const largeDiagrams = require("../testDiagrams")
+
 
 test("Empty String as Input", () => {
     validate.validateDiagram("").then(resp => {
