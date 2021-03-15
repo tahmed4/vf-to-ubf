@@ -12,12 +12,12 @@ Then...
 
 
 ```
-import {voiceflowToBotFormat} from 'vf-to-ubf';
+const voiceflowToBotFormat require('vf-to-ubf');
 var fs = require('fs');
 
-diagram = fs.readFile("./VoiceflowFile.vf")
+diagram = fs.readFileSync("./VoiceflowFile.vf")
 
-universal_format = voiceflowToBotFormat(diagram)
+universal_format = await voiceflowToBotFormat(diagram)
 
 ```
 
