@@ -5,7 +5,7 @@
   "main": "voiceflowToBotFormat.js",
   "scripts": {
     "test": "jest --coverage",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c ./config/jsdoc.json"
   },
   "repository": {
     "type": "git",
