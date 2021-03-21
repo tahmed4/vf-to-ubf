@@ -1,14 +1,33 @@
 [![NPM](https://nodei.co/npm/vf-to-ubf.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/vf-to-ubf/)
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![Tests](https://github.com/tahmed4/vf-to-ubf/actions/workflows/test.yml/badge.svg)](https://github.com/tahmed4/vf-to-ubf/actions/workflows/test.yml)
+
 # What is this?
 
-Take any Voiceflow file and convert it into a universal bot format to make it easier for you to extract and build from a conversation diagram.
+Take any Voiceflow file (.vf) and convert it into a universal bot format to make it easier for you to extract and build from a conversation diagram.
+
+## Documentation
+
+The documentation for the vf-to-ubf can be found [here][apidocs].
+
+## Versions
+
+### Supported Node.js Versions
+
+This package supports the following Node.js implementations:
+
+* Node.js 6
+* Node.js 8
+* Node.js 10
+* Node.js 12
+* Node.js 14
 
 # Installation
 
 `npm i vf-to-ubf`
 
-Then...
+# Sample Usage
 
 
 ```
@@ -60,3 +79,5 @@ console.log(universal_format)
    }
 }
 ```
+
+[apidocs]: http://sms-it.io/
