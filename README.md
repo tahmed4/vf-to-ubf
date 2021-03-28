@@ -80,4 +80,4 @@ console.log(universal_format)
 }
 ```
 
-[apidocs]: http://sms-it.io/
+[apidocs]: https://sms-it.io/docs/vf-to-ubf/
